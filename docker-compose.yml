@@ -1,0 +1,19 @@
+version: '3'
+services:
+  payment-portal:
+    build:
+      context: https://github.com/alexandrchumakin/portal-payment-app.git#main
+      dockerfile: DockerfileMultiStage
+    restart: always
+    ports:
+      - "8082:80"
+
+  e2e:
+    build: .
+    depends_on:
+      - payment-portal
+    environment:
+      - CYPRESS_baseUrl=http://payment-portal
+    command: npm run test
+    volumes:
+      - ./cypress:/app/cypress
