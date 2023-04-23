@@ -10,6 +10,7 @@ jobs:
       - name: Build the stack
         run: docker-compose up --abort-on-container-exit
       - uses: actions/upload-artifact@v3
+        if: always()
         with:
           name: Cypress artifacts
           path: |
