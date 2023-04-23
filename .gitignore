@@ -25,3 +25,4 @@ pnpm-debug.log*
 # Dependency directory
 cypress/videos
 cypress/screenshots
+cypress/results

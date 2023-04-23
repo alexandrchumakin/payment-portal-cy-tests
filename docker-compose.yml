@@ -1,0 +1,17 @@
+version: '3'
+services:
+  payment-portal:
+    build: https://github.com/alexandrchumakin/portal-payment-app.git
+    restart: always
+    ports:
+      - "8082:80"
+
+  e2e:
+    build: .
+    depends_on:
+      - payment-portal
+    environment:
+      - CYPRESS_baseUrl=http://payment-portal
+    command: npm run test
+    volumes:
+      - ./cypress:/app/cypress
