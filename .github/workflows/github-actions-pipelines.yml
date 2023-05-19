@@ -17,7 +17,9 @@ jobs:
             cypress/videos/
             cypress/snapshots/
       - name: Publish Test Report
-        uses: mikepenz/action-junit-report@v3
+        uses: dorny/test-reporter@v1
         if: always()
         with:
-          report_paths: 'cypress/results/test-output-*.xml'
+          name: Cypress JUnit Tests
+          path: cypress/results/test-output-*.xml
+          reporter: java-junit
